@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from teshi import api as teshi_api
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+        url(r'api/teshi/test',teshi_api.test)
 ]
