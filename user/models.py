@@ -14,10 +14,19 @@ class User(models.Model):
         ('云南省','云南省'),('陕西省','陕西省'),('甘肃省','甘肃省'),('青海省','青海省'),('台湾省','台湾省')
     )
     ponenum=  models.CharField(max_length=32,unique=True,verbose_name='手机号')
-    nickname=  models.CharField(max_length=32,unique=True,verbose_name='昵称')
+    nickname=  models.CharField(max_length=32,verbose_name='昵称')
     sex=  models.CharField(max_length=8,choices=SEX,verbose_name='性别')
     birthday=  models.DateField(default="1911-1-1",verbose_name='出生年')
     avatar=  models.CharField(max_length=256,verbose_name='个人形象')
     location=  models.CharField(max_length=20,choices=LOCATION,verbose_name='常居地')
     class Meta:
         db_table = 'user'
+    def to_dict(self):
+        return {
+            'ponenum':self.ponenum,
+            'nickname':self.nickname,
+            'sex':self.sex,
+            'birthday':str(self.birthday),
+            'avatar':self.avatar,
+            'location':self.location,
+        }
