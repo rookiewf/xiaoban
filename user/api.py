@@ -16,7 +16,9 @@ def send_vcode(request):
 def check_code(request):
     ponenum = request.POST.get('ponenum')
     vcode = request.POST.get('vcode')
+    print(vcode,'============')
     cache_code = cache.get('v_code-%s'%ponenum)
+    print(cache_code,vcode)
     # 验证验证码
     if vcode and cache_code and cache_code == vcode:
         try:
