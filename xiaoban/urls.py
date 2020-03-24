@@ -16,7 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from teshi import api as teshi_api
+from user import api as user_api
 
 urlpatterns = [
-        url(r'api/teshi/test',teshi_api.test)
+        url(r'api/teshi/test',teshi_api.test),
+        url(r'api/user/send_vcode',user_api.send_vcode),
+        url(r'api/user/check_code',user_api.check_code),
+
 ]
