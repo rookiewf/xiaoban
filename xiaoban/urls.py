@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 
 from user import api as user_api
+from social import api as social_api
 
 urlpatterns = [
     url(r'^api/user/get_vcode', user_api.get_vcode),
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^api/user/upload_avatar', user_api.upload_avatar),
     url(r'^weibo/wb_auth', user_api.wb_auth),
     url(r'^weibo/callback', user_api.wb_callback),
+    url(r'^api/social/get_rcmd_users',social_api.get_rcmd_users)
 ]
