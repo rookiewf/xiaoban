@@ -7,6 +7,7 @@ from django.core.cache import cache
 from xiaoban import cfg
 from common import keys
 from tasks import celery_app
+from libs.qn_cloud import upto_qn
 
 
 def gen_randcode(length: int) -> str:
@@ -72,3 +73,18 @@ def down_avatar(filename,avatar):
         for chunk in avatar.chunks():
             fp.write(chunk)
     return filepath,filename
+
+# celery 完成头像上传
+@celery_app.task
+def handle_avatar(avatar,user):
+    # 下载到本地
+    filepath,filename = down_avatar(avatar._name,avatar)
+    # 上传到七牛云
+    avatar_url = upto_qn(filename,filepath)
+    print(user.avatar,'==========================')
+    user.avatar = avatar_url
+    print(avatar_url)
+    user.save()
+    #　删除本地
+    os.remove(filepath)
+    return avatar_url

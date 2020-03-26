@@ -11,7 +11,6 @@ from user import logics
 from user.models import User
 from user.forms import UserForm, ProfileForm
 from libs.http import render_json
-from libs.qn_cloud import upto_qn
 
 def get_vcode(request):
     '''获取短信验证码'''
@@ -108,10 +107,7 @@ def set_profile(request):
 def upload_avatar(request):
     avatar = request.FILES.get('avatar')
     # print(type(avatar),avatar.__dict__)
-    # 下载到本地
-    filepath,filename = logics.down_avatar(avatar._name,avatar)
-    # 上传到七牛云
-    upto_qn(filename,filepath)
-    #　删除本地
-    os.remove(filepath)
+    logics.handle_avatar.delay(avatar,request.user)
     return JsonResponse({"code":'1000',"data":"上传成功"})
+
+
