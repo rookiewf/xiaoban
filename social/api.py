@@ -19,3 +19,8 @@ def like(request):
     sid = int(request.POST.get('sid'))
     is_masthed = logics.like_someone(request.user,sid)
     return JsonResponse({'ismathed':is_masthed})
+
+#　好友列表接口
+def friend_list(request):
+    logics.get_firends(request.user)
+    return None

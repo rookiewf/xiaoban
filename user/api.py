@@ -11,11 +11,12 @@ from user import logics
 from user.models import User
 from user.forms import UserForm, ProfileForm
 from libs.http import render_json
-
+import logging
+INFO_LOG = logging.getLogger('inf')
 def get_vcode(request):
     '''获取短信验证码'''
     phonenum = request.GET.get('phonenum')
-
+    INFO_LOG.info(f'{phonenum}发送了验证码')
     # 发送验证码, 并检查是否发送成功
     if logics.send_vcode(phonenum):
         return render_json()

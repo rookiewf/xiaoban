@@ -13,7 +13,6 @@ def rcmd_users(user):
         # location = user.profile.dating_location,
         birthday__lte=max_birthday,
         birthday__gte=min_birthday
-
     )[:50]
     return users
 
@@ -28,3 +27,5 @@ def like_someone(user, sid):
         return True
     else:
         return False
+def get_firends(user):
+    return None
