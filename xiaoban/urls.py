@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+<<<<<<< HEAD
 
 from user import api as user_api
 from social import api as social_api
@@ -29,4 +30,15 @@ urlpatterns = [
     url(r'^api/social/get_rcmd_users',social_api.get_rcmd_users),
     url(r'api/social/is_liked',social_api.like),
     url(r'api/social/friend_list',social_api.friend_list),
+=======
+from django.contrib import admin
+from teshi import api as teshi_api
+from user import api as user_api
+
+urlpatterns = [
+        url(r'api/teshi/test',teshi_api.test),
+        url(r'api/user/send_vcode',user_api.send_vcode),
+        url(r'api/user/check_code',user_api.check_code),
+
+>>>>>>> 1800c99547ad55952015c78102a95bb7e22f1eda
 ]
