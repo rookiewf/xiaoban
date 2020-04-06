@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'wz3nhrt&=ddvb9*12rndckypqj=vq9+s=ds8kx+ldb1(l)8xna'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -67,9 +65,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'xiaoban.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
 
 DATABASES = {
     'default': {
@@ -79,9 +77,16 @@ DATABASES = {
         'PORT': 3306,
         'USER': 'root',
         'PASSWORD': '123456'
+    },
+    'admin_': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'xiao',
+        'HOST': '192.168.252.135',
+        'PORT': 3306,
+        'USER': 'root',
+        'PASSWORD': '123456'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -101,7 +106,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -114,7 +118,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -132,7 +135,7 @@ LOGGING = {
         },
         'verbose': {
             'format': ('%(asctime)s %(levelname)s [%(process)d-%(threadName)s] '
-                    '%(module)s.%(funcName)s line %(lineno)d: %(message)s'),
+                       '%(module)s.%(funcName)s line %(lineno)d: %(message)s'),
             'datefmt': '%Y-%m-%d %H:%M:%S',
         }
     },
@@ -145,7 +148,7 @@ LOGGING = {
         'info': {
             'class': 'logging.handlers.TimedRotatingFileHandler',
             'filename': f'{BASE_DIR}/logs/info.log',  # 日志保存路径
-            'when': 'D',        # 每天切割日志
+            'when': 'D',  # 每天切割日志
             'backupCount': 30,  # 日志保留 30 天
             'formatter': 'simple',
             'level': 'INFO',
@@ -153,7 +156,7 @@ LOGGING = {
         'error': {
             'class': 'logging.handlers.TimedRotatingFileHandler',
             'filename': f'{BASE_DIR}/logs/error.log',  # 日志保存路径
-            'when': 'W0',      # 每周一切割日志
+            'when': 'W0',  # 每周一切割日志
             'backupCount': 4,  # 日志保留 4 周
             'formatter': 'verbose',
             'level': 'WARNING',
